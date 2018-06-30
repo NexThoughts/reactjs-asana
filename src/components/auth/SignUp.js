@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import * as routes from "../../constants/Routes";
-import "bootstrap";
+import {firebase, auth } from "../firebase";
 
 const SignUpPage = ({ history }) => (
   <div>
@@ -26,10 +26,29 @@ class SignUpForm extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
+  componentDidMount() {
+    const { history } = this.props;
+     console.log("App Component  ***************");
+    var user = firebase.auth.currentUser
+    if(user)
+      history.push(routes.HOME)
+  }
+
   onSubmit = event => {
     const { emailAddress, password } = this.state;
     const { history } = this.props;
-     event.preventDefault();
+    auth
+      .doCreateUserWithEmailAndPassword(emailAddress, password)
+      .then(authUser => {
+        this.setState(() => ({ ...INITIAL_STATE }));
+        authUser.user.sendEmailVerification();
+        auth.doSignOut();
+        history.push(routes.SIGN_IN);
+      })
+      .catch(error => {
+        this.setState(byPropKey("error", error));
+      });
+    event.preventDefault();
   };
 
   render() {
