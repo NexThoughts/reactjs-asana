@@ -33,9 +33,9 @@ const NavigationAuth = () => (
     <li class="nav-item">
       <Link to={routes.CREATE_PROJECT} className="nav-link">Create Project</Link>
     </li>
-    {/* <li class="nav-item">
+    <li class="nav-item">
       <Link to={routes.CREATE_TASK} className="nav-link">Create New Task</Link>
-    </li> */}
+    </li>
         <li class="nav-item">
           <Link to={routes.SIGN_OUT} class="nav-link">
             Sign Out

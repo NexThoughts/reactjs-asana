@@ -91,7 +91,7 @@ class CreateTaskForm extends Component {
                             byPropKey("assigned_to", event.target.value)
                           )
                         }
-                        type="password"
+                        type="text"
                         placeholder="Assigned To User"
                       />
                     </div>
