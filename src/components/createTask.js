@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import * as routes from "../constants/Routes";
 import "../static/stylesheets/App.css";
-import {db} from "../firebase";
+import {db,firebase} from "../firebase";
 import uuidv1 from 'uuid';
 
 const CreateTaskPage = ({ history }) => (
@@ -12,6 +12,7 @@ const CreateTaskPage = ({ history }) => (
     </div>
   );
 const INITIAL_STATE = {
+    userId: "",
     name: "",
     description: "",
     assigned_to: "",
@@ -28,6 +29,12 @@ class CreateTaskForm extends Component {
         this.state = { ...INITIAL_STATE };
     }
 
+    componentDidMount()
+    {
+        var user = firebase.auth.currentUser;
+        {INITIAL_STATE.userId=user.uid;}
+    }
+
     onSubmit = (event) => {
         const {
             name,
@@ -36,7 +43,7 @@ class CreateTaskForm extends Component {
             error,
         } = this.state;
 
-        db.doCreateTask(uuidv1(),name,description,'5677',assigned_to).then(() => {
+        db.doCreateTask(uuidv1(),name,description,INITIAL_STATE.userId,assigned_to).then(() => {
             this.setState(() => ({ ...INITIAL_STATE }));
         })
             .catch(error => {

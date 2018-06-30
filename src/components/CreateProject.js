@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import * as routes from "../constants/Routes";
-import {db} from "../firebase";
+import {db,firebase} from "../firebase";
 import uuidv1 from 'uuid';
 
 const CreateProjectPage = ({ history }) => (
@@ -11,6 +11,7 @@ const CreateProjectPage = ({ history }) => (
 );
 
 const INITIAL_STATE = {
+  userId: "",
   name: "",
   error: null
 };
@@ -25,10 +26,16 @@ class CreateProjectForm extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
+    componentDidMount()
+    {
+        var user = firebase.auth.currentUser;
+        {INITIAL_STATE.userId=user.uid;}
+    }
+
   onSubmit = event => {
     const {name,} = this.state;
 
-    db.doCreateProject(uuidv1(),name,'5677').then(() => {
+    db.doCreateProject(uuidv1(),name,INITIAL_STATE.userId).then(() => {
       this.setState(() => ({ ...INITIAL_STATE }));
     })
     .catch(error => {
