@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import * as routes from "../../constants/Routes";
-import "bootstrap";
+import { auth } from "../firebase";
 
 const SignUpPage = ({ history }) => (
   <div>
@@ -29,7 +29,16 @@ class SignUpForm extends Component {
   onSubmit = event => {
     const { emailAddress, password } = this.state;
     const { history } = this.props;
-     event.preventDefault();
+    auth
+      .doCreateUserWithEmailAndPassword(emailAddress, password)
+      .then(authUser => {
+        this.setState(() => ({ ...INITIAL_STATE }));
+        authUser.user.sendEmailVerification();
+      })
+      .catch(error => {
+        this.setState(byPropKey("error", error));
+      });
+    event.preventDefault();
   };
 
   render() {

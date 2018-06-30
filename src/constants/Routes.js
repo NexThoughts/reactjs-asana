@@ -5,3 +5,4 @@ export const HOME = "/home";
 export const ACCOUNT = "/account";
 export const PASSWORD_FORGET = "/password-forget";
 export const TASK_LIST = "/task/list";
+export const SIGN_OUT = "/signout";
