@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import * as routes from "../../constants/Routes";
+import {auth} from "../firebase"
 
-const SignUpPage = ({ history }) => (
+const SignInPage = ({ history }) => (
   <div>
-    <h1>SignUp Page</h1>
-    <SignUpForm history={history} />
+    <h1>Sign In </h1>
+    <SignInForm history={history} />
   </div>
 );
 
 const INITIAL_STATE = {
   emailAddress: "",
   password: "",
-  confirmPassword: "",
   error: null
 };
 
@@ -20,7 +20,7 @@ const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value
 });
 
-class SignUpForm extends Component {
+class SignInForm extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
@@ -29,13 +29,19 @@ class SignUpForm extends Component {
   onSubmit = event => {
     const { emailAddress, password } = this.state;
     const { history } = this.props;
-     event.preventDefault();
+    //Sign In Process
+    auth.doSignInWithEmailAndPassword(emailAddress,password).then(() =>{
+      this.setState(()=>({...INITIAL_STATE}));
+      history.push(routes.HOME)
+    }).catch(error =>{
+      this.setState(byPropKey('error',error));
+    });
+       event.preventDefault();
   };
 
   render() {
-    const { emailAddress, password, confirmPassword, error } = this.state;
-    const isInvalid =
-      password !== confirmPassword || password === "" || emailAddress === "";
+    const { emailAddress, password, error } = this.state;
+    const isInvalid = password === "" || emailAddress === "";
     return (
       <form onSubmit={this.onSubmit}>
         <input
@@ -54,15 +60,7 @@ class SignUpForm extends Component {
           type="password"
           placeholder="Password"
         />
-        <input
-          value={confirmPassword}
-          onChange={event =>
-            this.setState(byPropKey("confirmPassword", event.target.value))
-          }
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <button type="submit">Sign Up</button>
+        <button type="submit">Login</button>
 
         {error && <p>{error.message}</p>}
       </form>
@@ -70,12 +68,12 @@ class SignUpForm extends Component {
   }
 }
 
-const SignUpLink = () => (
+const SignInLink = () => (
   <p>
     Don't have an account? <Link to={routes.SIGN_UP}>Sign Up</Link>
   </p>
 );
 
-export default withRouter(SignUpPage);
+export default withRouter(SignInPage);
 
-export { SignUpForm, SignUpLink };
+export { SignInForm, SignInLink };

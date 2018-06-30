@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from "./Navigation";
 // import LandingPage from "./Landing";
 import SignUpPage from "../components/auth/SignUp";
+import SignInPage from "../components/auth/SignIn";
+import HomePage from "../components/auth/Home"
 import * as routes from "../constants/Routes";
 import CreateProject from "./CreateProject";
 import CreateTask from "./createTask";
@@ -31,6 +33,8 @@ class App extends Component {
           <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
           <Route exact path={routes.CREATE_PROJECT} component={() => <CreateProject />} />
           <Route exact path={routes.CREATE_TASK} component={() => <CreateTask />} />
+          <Route exact path ={routes.SIGN_IN} component ={() => <SignInPage/>}/>
+          <Route exact path ={routes.HOME} component ={() => <HomePage/>}/>
         </div>
       </Router>
     );
