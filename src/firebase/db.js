@@ -22,9 +22,10 @@ export const doCreateTodo = (userid, topic, content) =>
         createdByUserId,
     });
 
-    export const doCreateTask= (id,taskName,createdByUserId,assignedToId) =>
-    db.ref(`projects/${id}`).set({
+    export const doCreateTask= (id,taskName,description,createdByUserId,assignedToId) =>
+    db.ref(`tasks/${id}`).set({
         taskName,
+        description,
         createdByUserId,
         assignedToId
     });
