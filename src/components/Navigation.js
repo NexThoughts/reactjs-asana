@@ -32,6 +32,10 @@ const NavigationNonAuth = () => (
     <li>
       <Link to={routes.SIGN_UP}>Sign Up</Link>
     </li>
+
+        <li>
+      <Link to={routes.CREATE_PROJECT}>Create Project</Link>
+    </li>
   </ul>
 );
 

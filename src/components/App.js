@@ -4,6 +4,7 @@ import Navigation from "./Navigation";
 // import LandingPage from "./Landing";
 import SignUpPage from "../components/auth/SignUp";
 import * as routes from "../constants/Routes";
+import CreateProject from "./CreateProject";
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class App extends Component {
           <Navigation authUser={this.state.authUser} />
           <hr />
           <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
-        </div>
+          <Route exact path={routes.CREATE_PROJECT} component={() => <CreateProject />} /> </div>
       </Router>
     );
   }
