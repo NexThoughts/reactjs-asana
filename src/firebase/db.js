@@ -15,3 +15,10 @@ export const doCreateTodo = (userid, topic, content) =>
         topic,
         content
     });
+
+    export const doCreateProject= (id,projectName,createdByUserId) =>
+    db.ref(`users/${id}`).set({
+        username,
+        email,
+    });
+
