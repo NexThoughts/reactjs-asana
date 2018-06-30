@@ -6,6 +6,7 @@ import SignUpPage from "../components/auth/SignUp";
 import SignInPage from "../components/auth/SignIn";
 import HomePage from "../components/auth/Home";
 import * as routes from "../constants/Routes";
+import CreateProject from "./CreateProject";
 import TaskListPage from "../components/task/List";
 
 class App extends Component {
@@ -46,7 +47,7 @@ class App extends Component {
             />
             <Route exact path={routes.HOME} component={() => <HomePage />} />
           </div>
-        </div>
+          <Route exact path={routes.CREATE_PROJECT} component={() => <CreateProject />} /> </div>
       </Router>
     );
   }

@@ -25,32 +25,27 @@ const NavigationAuth = () => (
 
 const NavigationNonAuth = () => (
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <Link
-      class="navbar-brand"
-      to={routes.LANDING}
-      style={{ fontSize: "x-large" }}
+      <Link
+          class="navbar-brand" to={routes.LANDING}style={{ fontSize: "x-large" }}
     >
-      HakRex
-    </Link>
+      HakRex</Link>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto offset-lg-8">
-        <li class="nav-item">
-          <Link to={routes.SIGN_IN} class="nav-link">
-            Sign In
-          </Link>
-        </li>
-        <li class="nav-item">
-          <Link to={routes.SIGN_UP} class="nav-link">
-            Sign Up
-          </Link>
+    <li
+        class="nav-item">
+      <Link to={routes.SIGN_IN}class="nav-link">Sign In</Link>
+    </li>
+    <li
+        class="nav-item">
+      <Link to={routes.SIGN_UP}class="nav-link">Sign Up</Link>
         </li>
         <li class="nav-item">
           <Link to={routes.TASK_LIST} class="nav-link">
-            Task List
-          </Link>
-        </li>
-      </ul>
-    </div>
+            Task List</Link>
+    </li>
+<li>
+      <Link to={routes.CREATE_PROJECT}>Create Project</Link>
+    </li>  </ul></div>
   </nav>
 );
 
