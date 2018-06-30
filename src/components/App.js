@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from "./Navigation";
 // import LandingPage from "./Landing";
 import SignUpPage from "../components/auth/SignUp";
+import SignInPage from "../components/auth/SignIn";
+import HomePage from "../components/auth/Home";
 import * as routes from "../constants/Routes";
 import TaskListPage from "../components/task/List";
 
@@ -26,6 +28,7 @@ class App extends Component {
       <Router>
         <div>
           <Navigation authUser={this.state.authUser} />
+
           <div class="container">
             <Route
               exact
@@ -37,6 +40,7 @@ class App extends Component {
               path={routes.TASK_LIST}
               component={() => <TaskListPage />}
             />
+            <Route exact path={routes.HOME} component={() => <HomePage />} />
           </div>
         </div>
       </Router>

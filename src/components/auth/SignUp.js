@@ -29,7 +29,7 @@ class SignUpForm extends Component {
   onSubmit = event => {
     const { emailAddress, password } = this.state;
     const { history } = this.props;
-    event.preventDefault();
+     event.preventDefault();
   };
 
   render() {
