@@ -3,12 +3,12 @@ import 'firebase/auth';
 import 'firebase/database';
 
 const config = {
-    apiKey: "AIzaSyAULXt-wozTX96wfx7KePg5mx-I6Apb278",
-    authDomain: "todo-e0f0a.firebaseapp.com",
-    databaseURL: "https://todo-e0f0a.firebaseio.com",
-    projectId: "todo-e0f0a",
-    storageBucket: "todo-e0f0a.appspot.com",
-    messagingSenderId: "619532363739",
+    apiKey: "AIzaSyCM4_PbfOnrMEtExtsz7UfUP_A680_QLVw",
+    authDomain: "asana-react-hackathon.firebaseapp.com",
+    databaseURL: "https://asana-react-hackathon.firebaseio.com",
+    projectId: "asana-react-hackathon",
+    storageBucket: "asana-react-hackathon.appspot.com",
+    messagingSenderId: "417426213739"
 };
 
 if (!firebase.apps.length) {
