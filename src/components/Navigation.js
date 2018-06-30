@@ -25,11 +25,17 @@ const NavigationAuth = () => (
             Home
           </Link>
         </li>
-        <li class="nav-item">
+        {/* <li class="nav-item">
           <Link to={routes.TASK_LIST} class="nav-link">
             Task List
           </Link>
-        </li>
+        </li> */}
+    <li class="nav-item">
+      <Link to={routes.CREATE_PROJECT} class="nav-link">Create Project</Link>
+    </li>
+  {/* <li>
+      <Link to={routes.CREATE_TASK}>Create New Task</Link>
+    </li> */}
         <li class="nav-item">
           <Link to={routes.SIGN_OUT} class="nav-link">
             Sign Out
@@ -42,27 +48,22 @@ const NavigationAuth = () => (
 
 const NavigationNonAuth = () => (
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <Link
-      class="navbar-brand"
-      to={routes.LANDING}
-      style={{ fontSize: "x-large" }}
+      <Link
+          class="navbar-brand" to={routes.LANDING}style={{ fontSize: "x-large" }}
     >
-      HakRex
-    </Link>
+      HakRex</Link>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto offset-lg-8">
-        <li class="nav-item">
-          <Link to={routes.SIGN_IN} class="nav-link">
-            Sign In
-          </Link>
-        </li>
-        <li class="nav-item">
-          <Link to={routes.SIGN_UP} class="nav-link">
-            Sign Up
-          </Link>
-        </li>
-      </ul>
-    </div>
+    <li
+        class="nav-item">
+      <Link to={routes.SIGN_IN}class="nav-link">Sign In</Link>
+    </li>
+    <li
+        class="nav-item">
+      <Link to={routes.SIGN_UP}class="nav-link">Sign Up</Link>
+    </li>
+  </ul>
+  </div>
   </nav>
 );
 
