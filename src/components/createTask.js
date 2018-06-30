@@ -13,6 +13,7 @@ const INITIAL_STATE = {
     name: "",
     description: "",
     assigned_to: "",
+    comment:"",
     error: null,
 };
 
@@ -31,6 +32,7 @@ class CreateTaskForm extends Component {
             name,
             description,
             assigned_to,
+            comment,
             error,
         } = this.state;
 
@@ -47,7 +49,7 @@ class CreateTaskForm extends Component {
     }
 
     render() {
-        const { name, description, assigned_to, error, } = this.state;
+        const { name, description, assigned_to,comment, error, } = this.state;
         const isInvalid =
             assigned_to === '' || description === '' || name === '';
 
@@ -70,6 +72,12 @@ class CreateTaskForm extends Component {
                     onChange={event => this.setState(byPropKey('assigned_to', event.target.value))}
                     type="text"
                     placeholder="Assigned To"
+                />
+                <input
+                    value={comment}
+                    onChange={event => this.setState(byPropKey('comment', event.target.value))}
+                    type="textarea"
+                    placeholder="Comment"
                 />
                 <button type="submit" disabled={isInvalid}>
                     Create Task
