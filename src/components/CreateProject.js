@@ -26,16 +26,14 @@ class CreateProjectForm extends Component {
   }
 
   onSubmit = event => {
-    const { name } = "bhasi";
-    const { history } = this.props;
-    console.log("hshshshsh");
-    db.doCreateProject('1324',name,'5677').then(authUser => {
-      console.log("111111111")
+
+    const {name,} = this.state;
+
+        db.doCreateProject('1324',name,'5677').then(() => {
       this.setState(() => ({ ...INITIAL_STATE }));
     })
     .catch(error => {
-      console.log("222222222")
-      // this.setState(byPropKey('error', error));
+      this.setState(byPropKey('error', error));
     });
 
     event.preventDefault();
