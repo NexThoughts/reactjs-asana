@@ -7,6 +7,7 @@ import SignInPage from "../components/auth/SignIn";
 import HomePage from "../components/auth/Home";
 import * as routes from "../constants/Routes";
 import TaskListPage from "../components/task/List";
+import "bootstrap";
 
 class App extends Component {
   constructor(props) {
