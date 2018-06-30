@@ -4,6 +4,7 @@ import Navigation from "./Navigation";
 // import LandingPage from "./Landing";
 import SignUpPage from "../components/auth/SignUp";
 import * as routes from "../constants/Routes";
+import TaskListPage from "../components/task/List";
 
 class App extends Component {
   constructor(props) {
@@ -25,8 +26,18 @@ class App extends Component {
       <Router>
         <div>
           <Navigation authUser={this.state.authUser} />
-          <hr />
-          <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
+          <div class="container">
+            <Route
+              exact
+              path={routes.SIGN_UP}
+              component={() => <SignUpPage />}
+            />
+            <Route
+              exact
+              path={routes.TASK_LIST}
+              component={() => <TaskListPage />}
+            />
+          </div>
         </div>
       </Router>
     );
