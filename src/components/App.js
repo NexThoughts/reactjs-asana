@@ -1,12 +1,34 @@
 import React, { Component } from "react";
-import "../static/stylesheets/App.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Navigation from "./Navigation";
+// import LandingPage from "./Landing";
+import SignUpPage from "../components/auth/SignUp";
+import * as routes from "../constants/Routes";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { authUser: null };
+  }
+
+  componentDidMount() {
+    console.log("App Component  ***************");
+    // firebase.auth.onAuthStateChanged(authUser => {
+    //   authUser
+    //     ? this.setState(() => ({ authUser }))
+    //     : this.setState(() => ({ authUser: null }));
+    // });
+  }
+
   render() {
     return (
-      <div className="App">
-        <h1>Hello World!</h1>
-      </div>
+      <Router>
+        <div>
+          <Navigation authUser={this.state.authUser} />
+          <hr />
+          <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
+        </div>
+      </Router>
     );
   }
 }
