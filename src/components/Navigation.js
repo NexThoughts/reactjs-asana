@@ -33,7 +33,7 @@ const NavigationNonAuth = () => (
       HakRex
     </Link>
     <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto offset-lg-10">
+      <ul class="navbar-nav mr-auto offset-lg-8">
         <li class="nav-item">
           <Link to={routes.SIGN_IN} class="nav-link">
             Sign In
@@ -42,6 +42,11 @@ const NavigationNonAuth = () => (
         <li class="nav-item">
           <Link to={routes.SIGN_UP} class="nav-link">
             Sign Up
+          </Link>
+        </li>
+        <li class="nav-item">
+          <Link to={routes.TASK_LIST} class="nav-link">
+            Task List
           </Link>
         </li>
       </ul>
