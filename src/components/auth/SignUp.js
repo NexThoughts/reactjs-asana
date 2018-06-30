@@ -42,6 +42,8 @@ class SignUpForm extends Component {
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE }));
         authUser.user.sendEmailVerification();
+        auth.doSignOut();
+        history.push(routes.SIGN_IN);
       })
       .catch(error => {
         this.setState(byPropKey("error", error));
