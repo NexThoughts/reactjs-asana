@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import * as routes from "../../constants/Routes";
+import "bootstrap";
 
 const SignUpPage = ({ history }) => (
   <div>
-    <h1>SignUp Page</h1>
     <SignUpForm history={history} />
   </div>
 );
@@ -37,35 +37,68 @@ class SignUpForm extends Component {
     const isInvalid =
       password !== confirmPassword || password === "" || emailAddress === "";
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={emailAddress}
-          onChange={event =>
-            this.setState(byPropKey("emailAddress", event.target.value))
-          }
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          value={password}
-          onChange={event =>
-            this.setState(byPropKey("password", event.target.value))
-          }
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          value={confirmPassword}
-          onChange={event =>
-            this.setState(byPropKey("confirmPassword", event.target.value))
-          }
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <button type="submit">Sign Up</button>
+      <div class="row">
+        <div class="col-10 offset-lg-2">
+          <div class="card" style={{ width: "80%" }}>
+            <div class="card-body">
+              <h3 class="card-title">Regsiter to get started</h3>
+              <form onSubmit={this.onSubmit}>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input
+                    class="form-control"
+                    value={emailAddress}
+                    onChange={event =>
+                      this.setState(
+                        byPropKey("emailAddress", event.target.value)
+                      )
+                    }
+                    type="text"
+                    placeholder="Email Address"
+                  />
+                  <small id="emailHelp" class="form-text text-muted">
+                    We'll never share your email with anyone else.
+                  </small>
+                </div>
 
-        {error && <p>{error.message}</p>}
-      </form>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input
+                    class="form-control"
+                    value={password}
+                    onChange={event =>
+                      this.setState(byPropKey("password", event.target.value))
+                    }
+                    type="password"
+                    placeholder="Password"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <input
+                    class="form-control"
+                    value={confirmPassword}
+                    onChange={event =>
+                      this.setState(
+                        byPropKey("confirmPassword", event.target.value)
+                      )
+                    }
+                    type="password"
+                    placeholder="Confirm Password"
+                  />
+                </div>
+
+                <button class="btn btn-primary" type="submit">
+                  Sign Up
+                </button>
+
+                {error && <p>{error.message}</p>}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
