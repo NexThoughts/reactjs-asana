@@ -6,7 +6,6 @@ import uuidv1 from 'uuid';
 
 const CreateProjectPage = ({ history }) => (
   <div>
-    <h1>Create Project</h1>
     <CreateProjectForm history={history} />
   </div>
 );
@@ -44,21 +43,38 @@ class CreateProjectForm extends Component {
     
     const isInvalid = name === "" ;
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={name}
-          onChange={event =>
-            this.setState(byPropKey("name", event.target.value))
-          }
-          type="text"
-          placeholder="Project Name"
-        />
-       
 
-        <button type="submit">Create Project</button>
+      <div className="row">
+        <div className="col-10 offset-lg-2">
+          <div className="card" style={{ width: "80%" }}>
+            <div className="card-body">
+              <h3 className="card-title">Create Project</h3>
+              <form onSubmit={this.onSubmit}>
+                <div className="form-group">
+                  <label for="name">Project Name</label>
+                  <input
+                    className="form-control"
+                    value={name}
+                    onChange={event =>
+                      this.setState(
+                        byPropKey("name", event.target.value)
+                      )
+                    }
+                    type="text"
+                    placeholder="Project Name"
+                  />
+                </div>
 
-        {error && <p>{error.message}</p>}
-      </form>
+                <button className="btn btn-primary" type="submit">
+                  Create
+                </button>
+
+                {error && <p>{error.message}</p>}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

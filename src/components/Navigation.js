@@ -25,11 +25,17 @@ const NavigationAuth = () => (
             Home
           </Link>
         </li>
-        <li class="nav-item">
+        {/* <li class="nav-item">
           <Link to={routes.TASK_LIST} class="nav-link">
             Task List
           </Link>
-        </li>
+        </li> */}
+    <li class="nav-item">
+      <Link to={routes.CREATE_PROJECT} class="nav-link">Create Project</Link>
+    </li>
+  {/* <li>
+      <Link to={routes.CREATE_TASK}>Create New Task</Link>
+    </li> */}
         <li class="nav-item">
           <Link to={routes.SIGN_OUT} class="nav-link">
             Sign Out
@@ -55,25 +61,10 @@ const NavigationNonAuth = () => (
     <li
         class="nav-item">
       <Link to={routes.SIGN_UP}class="nav-link">Sign Up</Link>
-        </li>
-        <li class="nav-item">
-          <Link to={routes.TASK_LIST} class="nav-link">
-            Task List</Link>
     </li>
-    <li>
-      <Link to={routes.CREATE_PROJECT}>Create Project</Link>
-    </li>
-  <li>
-      <Link to={routes.CREATE_TASK}>Create New Task</Link>
-    </li>
-    <li>
-      <Link to={routes.CREATE_PROJECT}>Create Project</Link>
-    </li>
-    <li>
-      <Link to={routes.CREATE_TASK}>Create New Task</Link>
-    </li>
-  </ul></div>
-      </nav>
+  </ul>
+  </div>
+  </nav>
 );
 
 export default Navigation;
