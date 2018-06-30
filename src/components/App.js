@@ -6,6 +6,7 @@ import SignUpPage from "../components/auth/SignUp";
 import SignInPage from "../components/auth/SignIn";
 import HomePage from "../components/auth/Home";
 import * as routes from "../constants/Routes";
+import CreateTask from "./createTask";
 import CreateProject from "./CreateProject";
 import TaskListPage from "../components/task/List";
 
@@ -33,13 +34,9 @@ class App extends Component {
             <Route
               exact
               path={routes.SIGN_IN}
-              component={() => <SignInPage />}
-            />
-            <Route
-              exact
-              path={routes.SIGN_UP}
-              component={() => <SignUpPage />}
-            />
+              component={() => <SignInPage />} />
+          <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />}
+        />
             <Route
               exact
               path={routes.TASK_LIST}
@@ -47,7 +44,8 @@ class App extends Component {
             />
             <Route exact path={routes.HOME} component={() => <HomePage />} />
           </div>
-          <Route exact path={routes.CREATE_PROJECT} component={() => <CreateProject />} /> </div>
+          <Route exact path={routes.CREATE_PROJECT} component={() => <CreateProject />} /><Route exact path={routes.CREATE_TASK} component={() => <CreateTask />} />
+        </div>
       </Router>
     );
   }

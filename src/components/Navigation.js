@@ -43,9 +43,13 @@ const NavigationNonAuth = () => (
           <Link to={routes.TASK_LIST} class="nav-link">
             Task List</Link>
     </li>
-<li>
+    <li>
       <Link to={routes.CREATE_PROJECT}>Create Project</Link>
-    </li>  </ul></div>
+    </li>
+  <li>
+      <Link to={routes.CREATE_TASK}>Create New Task</Link>
+    </li>
+  </ul></div>
   </nav>
 );
 
