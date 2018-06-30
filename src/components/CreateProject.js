@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import * as routes from "../constants/Routes";
 import {db} from "../firebase";
+import uuidv1 from 'uuid';
 
 const CreateProjectPage = ({ history }) => (
   <div>
@@ -26,10 +27,9 @@ class CreateProjectForm extends Component {
   }
 
   onSubmit = event => {
-
     const {name,} = this.state;
 
-        db.doCreateProject('1324',name,'5677').then(() => {
+    db.doCreateProject(uuidv1(),name,'5677').then(() => {
       this.setState(() => ({ ...INITIAL_STATE }));
     })
     .catch(error => {
@@ -41,8 +41,6 @@ class CreateProjectForm extends Component {
 
   render() {
     const { name,error } = this.state;
-    console.log ("------------------"+name);
-    console.log ("------------------"+name);
     
     const isInvalid = name === "" ;
     return (

@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import * as routes from "../constants/Routes";
 import "../static/stylesheets/App.css";
 import {db} from "../firebase";
+import uuidv1 from 'uuid';
 
 const CreateTaskPage = ({ history }) => (
     <div>
@@ -35,7 +36,7 @@ class CreateTaskForm extends Component {
             error,
         } = this.state;
 
-        db.doCreateTask('134798',name,description,'5677',assigned_to).then(() => {
+        db.doCreateTask(uuidv1(),name,description,'5677',assigned_to).then(() => {
             this.setState(() => ({ ...INITIAL_STATE }));
         })
             .catch(error => {
