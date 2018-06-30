@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import * as routes from "../../constants/Routes";
 import { auth } from "../firebase";
+import { SignUpLink } from "./SignUp";
 
 const SignInPage = ({ history }) => (
   <div>
@@ -81,6 +82,7 @@ class SignInForm extends Component {
                 <button class="btn btn-primary" type="submit">
                   Sign In
                 </button>
+                <SignUpLink />
 
                 {error && <p>{error.message}</p>}
               </form>
@@ -92,12 +94,4 @@ class SignInForm extends Component {
   }
 }
 
-const SignInLink = () => (
-  <p>
-    Don't have an account? <Link to={routes.SIGN_UP}>Sign Up</Link>
-  </p>
-);
-
 export default withRouter(SignInPage);
-
-export { SignInForm, SignInLink };
