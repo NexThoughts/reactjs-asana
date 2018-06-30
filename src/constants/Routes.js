@@ -7,3 +7,4 @@ export const PASSWORD_FORGET = "/password-forget";
 export const CREATE_TASK = "/create-task";
 export const CREATE_PROJECT = "/project-create";
 export const TASK_LIST = "/task/list";
+export const SIGN_OUT = "/signout";

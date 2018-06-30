@@ -9,6 +9,9 @@ import * as routes from "../constants/Routes";
 import CreateTask from "./createTask";
 import CreateProject from "./CreateProject";
 import TaskListPage from "../components/task/List";
+import "bootstrap";
+import { firebase } from "../components/firebase";
+import SignOutPage from "./auth/SignOut";
 
 class App extends Component {
   constructor(props) {
@@ -18,11 +21,11 @@ class App extends Component {
 
   componentDidMount() {
     console.log("App Component  ***************");
-    // firebase.auth.onAuthStateChanged(authUser => {
-    //   authUser
-    //     ? this.setState(() => ({ authUser }))
-    //     : this.setState(() => ({ authUser: null }));
-    // });
+    firebase.auth.onAuthStateChanged(authUser => {
+      authUser
+        ? this.setState(() => ({ authUser }))
+        : this.setState(() => ({ authUser: null }));
+    });
   }
 
   render() {
@@ -41,6 +44,11 @@ class App extends Component {
               exact
               path={routes.TASK_LIST}
               component={() => <TaskListPage />}
+            />
+            <Route
+              exact
+              path={routes.SIGN_OUT}
+              component={() => <SignOutPage />}
             />
             <Route exact path={routes.HOME} component={() => <HomePage />} />
           </div>
