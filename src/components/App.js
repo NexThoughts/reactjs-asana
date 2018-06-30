@@ -12,6 +12,7 @@ import TaskListPage from "../components/task/List";
 import "bootstrap";
 import { firebase } from "../components/firebase";
 import SignOutPage from "./auth/SignOut";
+import * as dexie from "./services/dexieDB";
 
 class App extends Component {
   constructor(props) {
@@ -20,6 +21,12 @@ class App extends Component {
   }
 
   componentDidMount() {
+    dexie.createProjectSchema();
+    dexie.storeProjectData("abc", "bcvkjebcjkebve", "HPS", [
+      "abc",
+      "xyz",
+      "pqrs"
+    ]);
     console.log("App Component  ***************");
     firebase.auth.onAuthStateChanged(authUser => {
       authUser
@@ -37,9 +44,13 @@ class App extends Component {
             <Route
               exact
               path={routes.SIGN_IN}
-              component={() => <SignInPage />} />
-          <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />}
-        />
+              component={() => <SignInPage />}
+            />
+            <Route
+              exact
+              path={routes.SIGN_UP}
+              component={() => <SignUpPage />}
+            />
             <Route
               exact
               path={routes.TASK_LIST}
@@ -52,7 +63,16 @@ class App extends Component {
             />
             <Route exact path={routes.HOME} component={() => <HomePage />} />
           </div>
-          <Route exact path={routes.CREATE_PROJECT} component={() => <CreateProject />} /><Route exact path={routes.CREATE_TASK} component={() => <CreateTask />} />
+          <Route
+            exact
+            path={routes.CREATE_PROJECT}
+            component={() => <CreateProject />}
+          />
+          <Route
+            exact
+            path={routes.CREATE_TASK}
+            component={() => <CreateTask />}
+          />
         </div>
       </Router>
     );
