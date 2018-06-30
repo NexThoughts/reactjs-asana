@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import * as routes from "../../constants/Routes";
-import { auth } from "../firebase";
+import { firebase,auth } from "../firebase";
 import { SignUpLink } from "./SignUp";
 
 const SignInPage = ({ history }) => (
@@ -24,6 +24,15 @@ class SignInForm extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
+    firebase.auth.currentUser
+  }
+
+  componentDidMount() {
+    const { history } = this.props;
+     console.log("App Component  ***************");
+    var user = firebase.auth.currentUser
+    if(user)
+      history.push(routes.HOME)
   }
 
   onSubmit = event => {

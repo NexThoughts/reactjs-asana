@@ -6,7 +6,6 @@ import {db} from "../firebase";
 
 const CreateTaskPage = ({ history }) => (
     <div>
-      <h1>Create Task</h1>
       <CreateTaskForm history={history} />
     </div>
   );
@@ -50,30 +49,63 @@ class CreateTaskForm extends Component {
         const isInvalid = name === '';
 
         return (
-            <form onSubmit={this.onSubmit}>
-                <input
-                    value={name}
-                    onChange={event => this.setState(byPropKey('name', event.target.value))}
-                    type="text"
-                    placeholder="Task Name"
-                />
-                <input
-                    value={description}
-                    onChange={event => this.setState(byPropKey('description', event.target.value))}
-                    type="text"
-                    placeholder="Description"
-                />
-                <input
-                    value={assigned_to}
-                    onChange={event => this.setState(byPropKey('assigned_to', event.target.value))}
-                    type="text"
-                    placeholder="Assigned To"
-                />
-                <button type="submit" disabled={isInvalid}>
-                    Create Task
-                </button>
-                {error && <p>{error.message}</p>}
-            </form>
+
+            <div class="row">
+            <div class="col-10 offset-lg-2">
+              <div class="card" style={{ width: "80%" }}>
+                <div class="card-body">
+                  <h3 class="card-title">Add Task</h3>
+                  <form onSubmit={this.onSubmit}>
+                    <div class="form-group">
+                     <input
+                        class="form-control"
+                        value={name}
+                        onChange={event =>
+                          this.setState(
+                            byPropKey("name", event.target.value)
+                          )
+                        }
+                        type="text"
+                        placeholder="Enter Task"
+                      />
+                    </div>
+    
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        value={description}
+                        onChange={event =>
+                          this.setState(byPropKey("description", event.target.value))
+                        }
+                        type="text"
+                        placeholder="Task Description"
+                      />
+                    </div>
+    
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        value={assigned_to}
+                        onChange={event =>
+                          this.setState(
+                            byPropKey("assigned_to", event.target.value)
+                          )
+                        }
+                        type="password"
+                        placeholder="Assigned To User"
+                      />
+                    </div>
+    
+                    <button className="btn btn-primary" type="submit">
+                      Add
+                    </button>
+    
+                    {error && <p>{error.message}</p>}
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         );
     }
 } 
