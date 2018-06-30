@@ -10,7 +10,7 @@ import CreateTask from "./createTask";
 import CreateProject from "./CreateProject";
 import TaskListPage from "../components/task/List";
 import "bootstrap";
-import { firebase } from "../components/firebase";
+import { firebase } from "../firebase";
 import SignOutPage from "./auth/SignOut";
 
 class App extends Component {

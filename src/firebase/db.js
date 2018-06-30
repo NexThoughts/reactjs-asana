@@ -7,8 +7,8 @@ export const doCreateUser = (id, username, email) =>
         email,
     });
 
-export const onceGetUsers = () =>
-    db.ref('users').once('value');
+export const onceGetUsers = (id) =>
+    db.ref(`users/${id}`).once('value');
 
 export const doCreateTodo = (userid, topic, content) =>
     db.ref(`todos/${userid}`).set({
@@ -31,7 +31,7 @@ export const doCreateTodo = (userid, topic, content) =>
     });
 
     export const onceGetProject = () =>
-    db.ref('projects').once('value');
+    db.ref(`projects`).once('value');
   
     export const particularProject = (id) =>
     db.ref(`project/${id}`).once('value')
