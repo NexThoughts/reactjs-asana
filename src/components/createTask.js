@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import * as routes from "../constants/Routes";
 import "../static/stylesheets/App.css";
+import {db} from "../firebase";
 
 const CreateTaskPage = ({ history }) => (
     <div>
@@ -13,7 +14,6 @@ const INITIAL_STATE = {
     name: "",
     description: "",
     assigned_to: "",
-    comment:"",
     error: null,
 };
 
@@ -32,26 +32,22 @@ class CreateTaskForm extends Component {
             name,
             description,
             assigned_to,
-            comment,
             error,
         } = this.state;
 
-        // auth.doCreateUserWithEmailAndPassword(email, passwordOne)
-        //     .then(authUser => {
-        // .try(
-        // this.setState(() => ({ ...INITIAL_STATE }));
-        // });
-        // .catch(error => {
-        // this.setState(byPropKey('error', error));
-        // });
+        db.doCreateTask('134798',name,description,'5677',assigned_to).then(() => {
+            this.setState(() => ({ ...INITIAL_STATE }));
+        })
+            .catch(error => {
+                this.setState(byPropKey('error', error));
+            });
 
         event.preventDefault();
     }
 
     render() {
-        const { name, description, assigned_to,comment, error, } = this.state;
-        const isInvalid =
-            assigned_to === '' || description === '' || name === '';
+        const { name, description, assigned_to, error, } = this.state;
+        const isInvalid = name === '';
 
         return (
             <form onSubmit={this.onSubmit}>
@@ -72,12 +68,6 @@ class CreateTaskForm extends Component {
                     onChange={event => this.setState(byPropKey('assigned_to', event.target.value))}
                     type="text"
                     placeholder="Assigned To"
-                />
-                <input
-                    value={comment}
-                    onChange={event => this.setState(byPropKey('comment', event.target.value))}
-                    type="textarea"
-                    placeholder="Comment"
                 />
                 <button type="submit" disabled={isInvalid}>
                     Create Task
