@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import * as routes from "../../constants/Routes";
-import {auth} from "../firebase"
+import { auth } from "../firebase";
 
 const SignInPage = ({ history }) => (
   <div>
-    <h1>Sign In </h1>
     <SignInForm history={history} />
   </div>
 );
@@ -30,40 +29,65 @@ class SignInForm extends Component {
     const { emailAddress, password } = this.state;
     const { history } = this.props;
     //Sign In Process
-    auth.doSignInWithEmailAndPassword(emailAddress,password).then(() =>{
-      this.setState(()=>({...INITIAL_STATE}));
-      history.push(routes.HOME)
-    }).catch(error =>{
-      this.setState(byPropKey('error',error));
-    });
-       event.preventDefault();
+    auth
+      .doSignInWithEmailAndPassword(emailAddress, password)
+      .then(() => {
+        this.setState(() => ({ ...INITIAL_STATE }));
+        history.push(routes.HOME);
+      })
+      .catch(error => {
+        this.setState(byPropKey("error", error));
+      });
+    event.preventDefault();
   };
 
   render() {
     const { emailAddress, password, error } = this.state;
     const isInvalid = password === "" || emailAddress === "";
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={emailAddress}
-          onChange={event =>
-            this.setState(byPropKey("emailAddress", event.target.value))
-          }
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          value={password}
-          onChange={event =>
-            this.setState(byPropKey("password", event.target.value))
-          }
-          type="password"
-          placeholder="Password"
-        />
-        <button type="submit">Login</button>
+      <div class="row">
+        <div class="col-10 offset-lg-2">
+          <div class="card" style={{ width: "80%" }}>
+            <div class="card-body">
+              <h3 class="card-title">Sign In</h3>
+              <form onSubmit={this.onSubmit}>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input
+                    class="form-control"
+                    value={emailAddress}
+                    onChange={event =>
+                      this.setState(
+                        byPropKey("emailAddress", event.target.value)
+                      )
+                    }
+                    type="text"
+                    placeholder="Email Address"
+                  />
+                </div>
 
-        {error && <p>{error.message}</p>}
-      </form>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input
+                    class="form-control"
+                    value={password}
+                    onChange={event =>
+                      this.setState(byPropKey("password", event.target.value))
+                    }
+                    type="password"
+                    placeholder="Password"
+                  />
+                </div>
+                <button class="btn btn-primary" type="submit">
+                  Sign In
+                </button>
+
+                {error && <p>{error.message}</p>}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
