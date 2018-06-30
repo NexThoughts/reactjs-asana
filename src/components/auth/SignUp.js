@@ -33,6 +33,7 @@ class SignUpForm extends Component {
       .doCreateUserWithEmailAndPassword(emailAddress, password)
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE }));
+        authUser.user.sendEmailVerification();
       })
       .catch(error => {
         this.setState(byPropKey("error", error));
