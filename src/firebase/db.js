@@ -17,8 +17,33 @@ export const doCreateTodo = (userid, topic, content) =>
     });
 
     export const doCreateProject= (id,projectName,createdByUserId) =>
-    db.ref(`users/${id}`).set({
-        username,
-        email,
+    db.ref(`projects/${id}`).set({
+        projectName,
+        createdByUserId,
     });
+
+    export const doCreateTask= (id,taskName,createdByUserId,assignedToId) =>
+    db.ref(`projects/${id}`).set({
+        taskName,
+        createdByUserId,
+        assignedToId
+    });
+
+    export const onceGetProject = () =>
+    db.ref('projects').once('value');
+  
+    export const particularProject = (id) =>
+    db.ref(`project/${id}`).once('value')
+
+
+
+
+
+
+
+
+
+
+
+
 

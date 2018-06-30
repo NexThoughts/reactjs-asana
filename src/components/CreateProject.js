@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import * as routes from "../constants/Routes";
+import {db} from "../firebase";
 
 const CreateProjectPage = ({ history }) => (
   <div>
@@ -25,13 +26,23 @@ class CreateProjectForm extends Component {
   }
 
   onSubmit = event => {
-    const { name } = this.state;
+    const { name } = "bhasi";
     const { history } = this.props;
+    console.log("hshshshsh");
+    db.doCreateProject('1324',name,'5677').then(authUser => {
+      console.log("111111111")
+      this.setState(() => ({ ...INITIAL_STATE }));
+    })
+    .catch(error => {
+      console.log("222222222")
+      // this.setState(byPropKey('error', error));
+    });
+
     event.preventDefault();
   };
 
   render() {
-    const { name, error } = this.state;
+    const { name,error } = this.state;
     console.log ("------------------"+name);
     console.log ("------------------"+name);
     
@@ -46,6 +57,8 @@ class CreateProjectForm extends Component {
           type="text"
           placeholder="Project Name"
         />
+       
+
         <button type="submit">Create Project</button>
 
         {error && <p>{error.message}</p>}
