@@ -21,12 +21,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    dexie.createProjectSchema();
-    dexie.storeProjectData("abc", "bcvkjebcjkebve", "HPS", [
-      "abc",
-      "xyz",
-      "pqrs"
-    ]);
     console.log("App Component  ***************");
     firebase.auth.onAuthStateChanged(authUser => {
       authUser

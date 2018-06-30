@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import * as routes from "../constants/Routes";
-import {db} from "../firebase";
+import { db } from "../firebase";
+import * as dexie from "./services/dexieDB";
 
 const CreateProjectPage = ({ history }) => (
   <div>
@@ -25,25 +26,27 @@ class CreateProjectForm extends Component {
   }
 
   onSubmit = event => {
+    const { name } = this.state;
 
-    const {name,} = this.state;
-
-        db.doCreateProject('1324',name,'5677').then(() => {
-      this.setState(() => ({ ...INITIAL_STATE }));
-    })
-    .catch(error => {
-      this.setState(byPropKey('error', error));
-    });
-
+    //     db.doCreateProject('1324',name,'5677').then(() => {
+    //   this.setState(() => ({ ...INITIAL_STATE }));
+    // })
+    // .catch(error => {
+    //   this.setState(byPropKey('error', error));
+    // });
+    console.log("*******************");
+    dexie.storeProjectData(
+      name,
+      "Test Description,['Follower #1','Follower #2']"
+    );
     event.preventDefault();
   };
 
   render() {
-    const { name,error } = this.state;
-    
-    const isInvalid = name === "" ;
-    return (
+    const { name, error } = this.state;
 
+    const isInvalid = name === "";
+    return (
       <div className="row">
         <div className="col-10 offset-lg-2">
           <div className="card" style={{ width: "80%" }}>
@@ -56,9 +59,7 @@ class CreateProjectForm extends Component {
                     className="form-control"
                     value={name}
                     onChange={event =>
-                      this.setState(
-                        byPropKey("name", event.target.value)
-                      )
+                      this.setState(byPropKey("name", event.target.value))
                     }
                     type="text"
                     placeholder="Project Name"
@@ -81,7 +82,8 @@ class CreateProjectForm extends Component {
 
 const CreateProjectLink = () => (
   <p>
-   Do you Want to create Project? <Link to={routes.CREATE_PROJECT}>Create Project</Link>
+    Do you Want to create Project?{" "}
+    <Link to={routes.CREATE_PROJECT}>Create Project</Link>
   </p>
 );
 
